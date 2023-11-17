@@ -22,7 +22,7 @@ resource "aws_subnet" "my_public_subnet" {
 
 
 resource "aws_internet_gateway" "my_internet_gateway" {
-  vpc_id = aws_vpc.mtc_vpc.id
+  vpc_id = aws_vpc.my_vpc.id
 
   tags = {
     Name = "dev-igw"
@@ -61,13 +61,13 @@ resource "aws_security_group" "my_sg" {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["*.*.*.*/32"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"] 
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -75,6 +75,12 @@ resource "aws_security_group" "my_sg" {
 resource "tls_private_key" "public_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
+}
+
+variable "three_tier_rsa_key" {
+  default     = "three_tier_rsa_key"
+  description = "RSA Key variable"
+  type        = string
 }
 
 resource "aws_key_pair" "three_tier_rsa_key" {
@@ -89,9 +95,9 @@ resource "aws_instance" "ec2_dev" {
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
   key_name               = "three_tier_rsa_key"
-  user_data              = file("install-apache")
+  user_data              = file("install-apache.sh")
 
-  root_block_device {  
+  root_block_device {
     volume_size = 20
   }
   tags = {
