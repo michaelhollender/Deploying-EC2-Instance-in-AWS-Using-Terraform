@@ -1,5 +1,5 @@
 resource "aws_vpc" "my_vpc" {
-  cidr_block           = "10.123.0.0/16"
+  cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
   enable_dns_support   = true
 
@@ -11,7 +11,7 @@ resource "aws_vpc" "my_vpc" {
 
 resource "aws_subnet" "my_public_subnet" {
   vpc_id                  = aws_vpc.my_vpc.id
-  cidr_block              = "10.123.1.0/24"
+  cidr_block              = "10.0.1.0/24"
   map_public_ip_on_launch = true
   availability_zone       = "us-east-1a"
 
@@ -77,14 +77,14 @@ resource "tls_private_key" "public_key" {
   rsa_bits  = 4096
 }
 
-variable "three_tier_rsa_key" {
-  default     = "three_tier_rsa_key"
+variable "web_tier_EC2_rsa_key" {
+  default     = "web_tier_EC2_rsa_key"
   description = "RSA Key variable"
   type        = string
 }
 
-resource "aws_key_pair" "three_tier_rsa_key" {
-  key_name   = var.three_tier_rsa_key
+resource "aws_key_pair" "web_tier_EC2_rsa_key" {
+  key_name   = var.web_tier_EC2_rsa_key
   public_key = tls_private_key.public_key.public_key_openssh
 }
 
