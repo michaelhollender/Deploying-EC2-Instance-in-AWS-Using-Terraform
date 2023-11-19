@@ -1,5 +1,5 @@
 /* This Terraform deployment creates the following resources:
-VPC, Subnet, Internet Gateway, Default Route, Security Group, SSH Key, and EC2 with userdata script intsalling httpd
+VPC, Subnet, Internet Gateway, Route Table, Default Route, Security Group, SSH Key, and EC2 with userdata script intsalling httpd
 */
 
 # Create VPC Resources
