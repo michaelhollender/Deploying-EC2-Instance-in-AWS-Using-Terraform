@@ -111,6 +111,3 @@ resource "aws_instance" "ec2_dev" {
     Name = "dev-node"
   }
 }
-
-
-
