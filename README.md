@@ -52,6 +52,6 @@ Run “terraform destroy” to terminate all the resources that were deployed du
 
 ![Screenshot](https://github.com/michaelhollender/Deploying-EC2-Instance-in-AWS-Using-Terraform/blob/main/images/12.%20Running%20the%20terraform%20destroy%20command.png)
 
-Please see ... for the complete blog article!!
+Please see https://medium.com/@michaelhollender/deploying-an-ec2-instance-in-aws-using-terraform-7c9e9a160ae6 for the complete blog article!!
 
 That completes this project! Thank you for reading!
