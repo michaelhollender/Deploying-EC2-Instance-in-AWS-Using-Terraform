@@ -101,7 +101,7 @@ resource "aws_instance" "ec2_dev" {
   ami                    = data.aws_ami.server_ami.id
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   subnet_id              = aws_subnet.my_public_subnet.id
-  key_name               = "three_tier_rsa_key"
+  key_name               = "web_tier_EC2_rsa_key"
   user_data              = file("install-apache.sh")
 
   root_block_device {
