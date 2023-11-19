@@ -1,6 +1,8 @@
 # Deploying-EC2-Instance-in-AWS-Using-Terraform
 
-We will want to check that all files were created. I need to run the “ls” command since I am working on a Fedora Linux VM.
+1. First clone this repo:
+
+   We will want to check that all files were created. I need to run the “ls” command since I am working on a Fedora Linux VM.
  
 
 Code: ls
