@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Use this Shell Script to Install httpd to Configure the EC2 Instance as a Webserver
+
 apt update -y
 apt install -y apache2
 systemctl start apache2
