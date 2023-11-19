@@ -1,3 +1,5 @@
+# Use Data Sources to Query the AWS API to gather the AMI information needed for deploying the EC2 Instance
+
 data "aws_ami" "server_ami" {
   most_recent = true
   owners      = ["099720109477"]
