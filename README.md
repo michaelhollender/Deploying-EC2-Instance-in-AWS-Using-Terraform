@@ -3,7 +3,7 @@
 Step 1. First clone this repo:
    git clone https://github.com/michaelhollender/Deploying-EC2-Instance-in-AWS-Using-Terraform.git
 
-Step 2: Run the Terraform Commands to Create the EC2 Instance and the Underlying Infrastructure
+Step 2: Run the Following Terraform Commands to Create the EC2 Instance and the Underlying Infrastructure
 
 Finally, we are now ready to deploy our AWS resources using Terraform. We must run “terraform init” to initialize the working directory that is holding the Terraform configuration files.
 
