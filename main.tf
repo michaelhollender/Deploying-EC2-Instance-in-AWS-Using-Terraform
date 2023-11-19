@@ -1,3 +1,10 @@
+
+/* This Terraform deployment creates the following resources:
+VPC, Subnet, Internet Gateway, Default Route, Security Group, SSH Key, and EC2 with userdata script intsalling httpd
+*/
+
+# Create VPC Resources
+
 resource "aws_vpc" "my_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -7,7 +14,6 @@ resource "aws_vpc" "my_vpc" {
     Name = "ec2_vpc"
   }
 }
-
 
 resource "aws_subnet" "my_public_subnet" {
   vpc_id                  = aws_vpc.my_vpc.id
@@ -20,7 +26,6 @@ resource "aws_subnet" "my_public_subnet" {
   }
 }
 
-
 resource "aws_internet_gateway" "my_internet_gateway" {
   vpc_id = aws_vpc.my_vpc.id
 
@@ -28,7 +33,6 @@ resource "aws_internet_gateway" "my_internet_gateway" {
     Name = "dev-igw"
   }
 }
-
 
 resource "aws_route_table" "my_public_rt" {
   vpc_id = aws_vpc.my_vpc.id
@@ -38,19 +42,19 @@ resource "aws_route_table" "my_public_rt" {
   }
 }
 
-
 resource "aws_route" "default_route" {
   route_table_id         = aws_route_table.my_public_rt.id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.my_internet_gateway.id
 }
 
-
 resource "aws_route_table_association" "my_public_assoc" {
   subnet_id      = aws_subnet.my_public_subnet.id
   route_table_id = aws_route_table.my_public_rt.id
 }
 
+
+# Create EC2 Security Group and Security Rules
 
 resource "aws_security_group" "my_sg" {
   name        = "dev_sg"
@@ -72,6 +76,8 @@ resource "aws_security_group" "my_sg" {
 }
 
 
+# Create SSH Keys for EC2 Remote Access
+
 resource "tls_private_key" "public_key" {
   algorithm = "RSA"
   rsa_bits  = 4096
@@ -88,6 +94,8 @@ resource "aws_key_pair" "web_tier_EC2_rsa_key" {
   public_key = tls_private_key.public_key.public_key_openssh
 }
 
+
+# Create EC2 Instance
 
 resource "aws_instance" "ec2_dev" {
   instance_type          = "t2.medium"
