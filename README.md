@@ -1,21 +1,13 @@
 # Deploying-EC2-Instance-in-AWS-Using-Terraform
 
-1. First clone this repo:
+Step 1. First clone this repo:
+   git clone https://github.com/michaelhollender/Deploying-EC2-Instance-in-AWS-Using-Terraform.git
 
-   We will want to check that all files were created. I need to run the “ls” command since I am working on a Fedora Linux VM.
- 
-
-Code: ls
-
-
-Note: I have the terraform.tfstate and terraform.tfstate.backup files in my directory because I have already ran terraform init and these files are created when that command is ran.
-
-
-Step 3: Run the Terraform Commands to Create the EC2 Instance and the Underlying Infrastructure
+Step 2: Run the Terraform Commands to Create the EC2 Instance and the Underlying Infrastructure
 
 Finally, we are now ready to deploy our AWS resources using Terraform. We must run “terraform init” to initialize the working directory that is holding the Terraform configuration files.
 
-Code: terraform init
+![Screenshot](https://github.com/michaelhollender/Deploying-EC2-Instance-in-AWS-Using-Terraform/blob/main/images/2.%20Running%20the%20terraform%20init%20command.png)
 
 
 
